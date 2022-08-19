@@ -4,29 +4,31 @@
 
 int main(int argc, char *argv[]){
 
-        NODE *n1;
-
-        n1 = node_new('a');
-
+        NODE *head = NULL;
+        NODE *tail = NULL;
+        head = node_new('a');
+        tail = head;
+/*
         int link;
         char value;
-/*
-        printf("How many link will you make? ");
-        scanf("%d", &link);
-        for(int i = 0; i < link; i++){
+
+        while(1){
                 printf("Type the node value : ");
                 scanf("%c", &value);
-                node_append(n1, value);
+                if(value == 'x')
+                        break;
+                tail = node_append2(tail, value);
         }
 */
-        node_append(n1, 'b');
-        node_append(n1, 'c');
+        tail = node_append2(tail, 'b');
+        tail = node_append2(tail, 'c');
+        head = node_prepend(head, 'z');
 
-        node_print(n1); // node value : a
+        // node_print(head);    // node value : a
 
-        node_print_link(n1); // a - b
+        node_print_link(head);  // a - b
 
-        node_free(n1);
+        node_free(head);
 
         return 0;
 }
