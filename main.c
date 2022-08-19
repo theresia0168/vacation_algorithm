@@ -18,7 +18,7 @@ int main(int argc, char *argv[]){
                 scanf("%c", &value);
                 node_append(n1, value);
         }
-*/
+*/ 
         node_append(n1, 'b');
         node_append(n1, 'c');
 
