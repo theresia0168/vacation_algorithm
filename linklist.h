@@ -18,6 +18,13 @@ NODE *node_new(char p){
         return buf;
 }
 
+NODE *node_prepend(NODE *n, char p){
+        NODE *buf = NULL;
+        buf = node_new(p);
+        buf->next = n;
+        return buf;
+}
+
 NODE *node_append(NODE *n, char p){
         NODE *buf = NULL;
         buf = (NODE*)malloc(sizeof(NODE)*1);
@@ -25,6 +32,13 @@ NODE *node_append(NODE *n, char p){
         while(n->next!=NULL){
                 n = n->next;
         }
+        n->next = buf;
+        return buf;
+}
+
+NODE *node_append2(NODE *n, char p){
+        NODE *buf = NULL;
+        buf = node_new(p);
         n->next = buf;
         return buf;
 }
