@@ -58,6 +58,34 @@ void linklist_prepend(LINKLIST *list, char p){
         list->node_amount++;
 }
 
+void linklist_insert(LINKLIST *list, int n, char p){
+        NODE *train = NULL;
+        train = list->head;
+        for(int i = 1; i < n; i++){
+                train = train->next;
+        }
+
+        NODE *buf = NULL;
+        buf = (NODE*)malloc(sizeof(NODE)*1);
+        buf->c = p;
+        buf->next = train->next;
+        train->next = buf;
+        list->node_amount++;
+}
+
+void linklist_remove(LINKLIST *list, int index){        // 더 수정해볼 것
+        NODE *train = NULL;
+        train = list->head;
+        for(int i = 1; i < index; i++)
+                train = train->next;
+        NODE *buf = NULL;
+        buf = (NODE*)malloc(sizeof(NODE)*1);
+        buf = train->next;
+        buf = buf->next;
+        free(train->next);
+        train->next = buf->next;
+}
+
 void linklist_print(LINKLIST *list){
         int na = list->node_amount;
         NODE *train = list->head;
