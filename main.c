@@ -1,6 +1,9 @@
 #include <stdio.h>
+#include <iostream>
 #include <stdlib.h>
 #include "linklist.h"
+
+using namespace std;
 
 int main(int argc, char *argv[]){
 
@@ -8,18 +11,18 @@ int main(int argc, char *argv[]){
         NODE *tail = NULL;
         head = node_new('a');
         tail = head;
-/*
+
         int link;
         char value;
 
         while(1){
-                printf("Type the node value : ");
-                scanf("%c", &value);
+                cout << ("Type the node value : ");
+                cin >> value;
                 if(value == 'x')
                         break;
                 tail = node_append2(tail, value);
         }
-*/
+
         tail = node_append2(tail, 'b');
         tail = node_append2(tail, 'c');
         head = node_prepend(head, 'z');
