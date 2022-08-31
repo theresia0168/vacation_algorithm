@@ -6,6 +6,46 @@ void print_h(int *h, int len){
 		printf("\n");
 }
 
+void mk_heap(int *h, int last_index){
+	int n, i, buf;
+	int p, s;
+	n = last_index;
+	for(i = n/2; i >= 1; i--){
+		p = i;
+		s = p * 2;
+
+		while(s <= n){
+			if((s < n) && (h[s + 1] < h[s]))
+				s++;
+			if(h[p] < h[s])
+				break;
+			buf = h[p];
+			h[p] = h[s];
+			h[s] = buf;
+
+			p = s;
+			s = 2 * p;
+		}
+	}
+}
+
+void go_up(int *h, int s, int p){
+	int t;
+	if(s < 2)
+		return;
+	if(h[p] > h[s]){
+		t = h[p];
+		h[p] = h[s];
+		h[s] = t;
+	}
+	go_up(h, p, s/2);
+}
+
+void heap_add_r(int *h, int last_index, int value){
+	h[last_index] = value;
+	go_up(h, last_index, last_index/2);
+}
+
 void ancestor(int *h, int last_index, int half_index){
 	int t;
 	t = h[last_index];
@@ -33,8 +73,24 @@ int main(int argc, char *argv[]){
 		heap[i] = -1;
 
 	for(i = 0; i < len; i++)
+		heap[i + 1] = values[i];
+/*
+	for(i = 0; i < len; i++)
 		heap_add(heap, i + 1, values[i]);
+*/
 
+	printf("BEFORE : ");
+	print_h(heap, len);
+
+	int min, buf;
+	for(i = len; i > 0; i--){
+		mk_heap(heap, i);
+		buf = heap[1];
+		heap[1] = heap[i];
+		heap[i] = buf;
+	}
+
+	printf("AFTER  : ");
 	print_h(heap, len);
 
 	return 0;
